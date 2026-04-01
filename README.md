@@ -12,13 +12,14 @@ This folder contains a set of files. Each file contains a set of records. Each r
 
 ▪ Each file is in the following format:
 
+```
 n
 <ID number 1> <name 1>
 <ID number 2> <name 2>
 <ID number 3> <name 3>
 ⋮
 <ID number n> <name n>
-
+```
 
 Explanation:
 
@@ -130,16 +131,19 @@ The starter code given to you contains the following files:
 
 ▪ To get the execution time in C, you can use the helper function currentTimeMillis() provided in timer.c. Below is an example of how to record the execution time of a certain algorithm:
 
-
+```
 long startTime, endTime, executionTime;
 startTime = currentTimeMillis(); // store the current time
 /* CALL THE ALGORITHM HERE */
 endTime = currentTimeMillis(); // store the current time
 executionTime = endTime - startTime;
+```
 
 To get the execution time in Java, you can use the built-in System.currentTimeMillis() function of Java. Below is an example of how to record the execution time of a certain algorithm:
 
+```
 long startTime = System.currentTimeMillis(); // store the current time
 /* CALL THE ALGORITHM HERE */
 long endTime = System.currentTimeMillis(); // store the current time
 long executionTime = endTime - startTime;
+```
