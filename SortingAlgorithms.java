@@ -13,6 +13,13 @@ public class SortingAlgorithms {
     public void insertionSort(Record[] arr, int n) {
         // TODO: Implement this sorting algorithm here.
 
+        //select leftmost then if the one to the immediate right is smaller, place it in the correct position
+        //O(n^2)
+
+        //compare with arr[i].getIdNumber
+        //figure out how to shift entire array to the right
+        //then just equate EZPZ
+
     }
 
     public void selectionSort(Record[] arr, int n) {
