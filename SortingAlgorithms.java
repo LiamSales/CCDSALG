@@ -17,15 +17,14 @@ public class SortingAlgorithms {
             int key = arr[i].getIdNumber();
             int j = i--;
 
-            while (j>=0 && arr[j].getIdNumber() > key){
+            while (j>=0 && arr[j].getIdNumber() < key){
+                arr[j] = arr[i];
 
+                //while i> i-1, swap
             }
 
 
         }
-
-
-
 
     }
 
