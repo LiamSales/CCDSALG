@@ -17,7 +17,8 @@ public class SortingAlgorithms {
             Record key = arr[i];
             int j = i--;
 
-            while (j>=0 && arr[j].getIdNumber() > key.getIdNumber()){
+            while (j>=0 && arr[j].getIdNumber() > arr[j+1].getIdNumber()){
+                key = arr[j];
                 arr[j] = arr[i];
                 arr[i] = key;
                 j--;
