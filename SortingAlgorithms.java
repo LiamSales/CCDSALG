@@ -11,14 +11,21 @@ public class SortingAlgorithms {
      */
 
     public void insertionSort(Record[] arr, int n) {
-        // TODO: Implement this sorting algorithm here.
 
-        //select leftmost then if the one to the immediate right is smaller, place it in the correct position
-        //O(n^2)
+        for (int i=1; i<n; i++){
 
-        //compare with arr[i].getIdNumber
-        //figure out how to shift entire array to the right
-        //then just equate EZPZ
+            int key = arr[i].getIdNumber();
+            int j = i--;
+
+            while (j>=0 && arr[j].getIdNumber() > key){
+
+            }
+
+
+        }
+
+
+
 
     }
 
