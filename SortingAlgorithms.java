@@ -14,15 +14,14 @@ public class SortingAlgorithms {
 
         for (int i=1; i<n; i++){
 
-            int key = arr[i].getIdNumber();
+            Record key = arr[i];
             int j = i--;
 
-            while (j>=0 && arr[j].getIdNumber() < key){
+            while (j>=0 && arr[j].getIdNumber() > key.getIdNumber()){
                 arr[j] = arr[i];
-
-                //while i> i-1, swap
+                arr[i] = key;
+                j--;
             }
-
 
         }
 
