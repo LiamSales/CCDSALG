@@ -10,26 +10,33 @@ public class SortingAlgorithms {
      * they will only be used in this class.
      */
 
-    public void insertionSort(Record[] arr, int n) {
+public void insertionSort(Record[] arr, int n) {
 
-        for (int i=1; i<n; i++){
+    for (int i=1; i<n; i++){
 
-            Record key = arr[i];
-            int j = i-1;
+        Record key = arr[i];
+        int j = i-1;
 
-            while (j>=0 && arr[j].getIdNumber() > arr[j+1].getIdNumber()){
+        // You're comparing arr[j] with arr[j+1], but insertion sort should compare arr[j] with "key".
+        // arr[j+1] changes during shifting, so this condition becomes unreliable.
 
-                arr[j+1] = arr[j];
-                arr[j] = key;
-                j--;
+        while (j>=0 && arr[j].getIdNumber() > arr[j+1].getIdNumber()){
 
-                //i think this should work?
+            arr[j+1] = arr[j]; 
 
-            }
-            // In insertion sort, after shifting, you normally place key at arr[j+1].
+            arr[j] = key;
+            // ⚠️ Problem:
+            // You are placing "key" too early, inside the loop.
+            // This breaks the shifting process. Key should only be inserted AFTER shifting is done.
+            j--;
+            // ⚠️ Because of the line above, key keeps getting moved multiple times incorrectly
         }
-
+        // After the loop, key should be placed at arr[j+1]
+        // Right now, final placement is not guaranteed to be correct
     }
+
+}
+
 
     public void selectionSort(Record[] arr, int n) {
         // TODO: Implement this sorting algorithm here.
