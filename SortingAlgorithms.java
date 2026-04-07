@@ -15,21 +15,16 @@ public class SortingAlgorithms {
         for (int i=1; i<n; i++){
 
             Record key = arr[i];
-
             int j = i-1;
 
             while (j>=0 && arr[j].getIdNumber() > arr[j+1].getIdNumber()){
 
-                key = arr[j];
-                        //This overwrites your original "key". In insertion sort,
-                        // key is usually preserved as the element being inserted.
-
-                arr[j] = arr[j+1];
-                        //This looks like a swap-style operation,
-                        // not the typical "shifting" used in insertion sort.
-
-                arr[j+1] = key;
+                arr[j+1] = arr[j];
+                arr[j] = key;
                 j--;
+
+                //i think this should work?
+
             }
             // In insertion sort, after shifting, you normally place key at arr[j+1].
         }
