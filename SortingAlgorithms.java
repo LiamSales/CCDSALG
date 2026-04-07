@@ -17,22 +17,17 @@ public void insertionSort(Record[] arr, int n) {
         Record key = arr[i];
         int j = i-1;
 
-        // You're comparing arr[j] with arr[j+1], but insertion sort should compare arr[j] with "key".
-        // arr[j+1] changes during shifting, so this condition becomes unreliable.
-
-        while (j>=0 && arr[j].getIdNumber() > arr[j+1].getIdNumber()){
+        while (j>=0 && arr[j].getIdNumber() > key.getIdNumber()){
 
             arr[j+1] = arr[j]; 
-
-            arr[j] = key;
-            // ⚠️ Problem:
-            // You are placing "key" too early, inside the loop.
-            // This breaks the shifting process. Key should only be inserted AFTER shifting is done.
-            j--;
-            // ⚠️ Because of the line above, key keeps getting moved multiple times incorrectly
+            
+            if (j>=1)
+                if (arr[j-1].getIdNumber()<=key.getIdNumber()){
+                    arr[j] = key;
+                }
+                j--;
         }
-        // After the loop, key should be placed at arr[j+1]
-        // Right now, final placement is not guaranteed to be correct
+
     }
 
 }
