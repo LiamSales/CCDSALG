@@ -10,27 +10,20 @@ public class SortingAlgorithms {
      * they will only be used in this class.
      */
 
-public void insertionSort(Record[] arr, int n) {
+    public void insertionSort(Record[] arr, int n) {
 
-    for (int i=1; i<n; i++){
+        for (int i=1; i<n; i++){
 
-        Record key = arr[i];
-        int j = i-1;
+            Record key = arr[i];
+            int j = i-1;
 
-        while (j>=0 && arr[j].getIdNumber() > key.getIdNumber()){
-
-            arr[j+1] = arr[j]; 
-            
-            if (j>=1)
-                if (arr[j-1].getIdNumber()<=key.getIdNumber()){
-                    arr[j] = key;
-                }
+            while (j>=0 && arr[j].getIdNumber() > key.getIdNumber()){
+                arr[j+1] = arr[j]; 
                 j--;
+            } 
+            arr[j+1] = key;
         }
-
     }
-
-}
 
 
     public void selectionSort(Record[] arr, int n) {
