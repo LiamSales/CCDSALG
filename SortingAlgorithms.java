@@ -29,6 +29,9 @@ public class SortingAlgorithms {
     public void selectionSort(Record[] arr, int n) {
         // TODO: Implement this sorting algorithm here.
 
+        //loop through i, find the smallest 
+        //swap it with arr[i]
+
     }
 
     public void mergeSort(Record[] arr, int p, int r) {
