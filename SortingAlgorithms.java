@@ -32,6 +32,19 @@ public class SortingAlgorithms {
         //loop through i, find the smallest 
         //swap it with arr[i]
 
+        Record min;
+        int j=0;
+
+        for (int i=0; i<n; i++){
+
+            while (j<n){
+                //use i and j to find the smallest
+                j++;
+            }
+
+            arr[i] = min;
+        }
+
     }
 
     public void mergeSort(Record[] arr, int p, int r) {
