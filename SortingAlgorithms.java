@@ -32,23 +32,15 @@ public void selectionSort(Record[] arr, int n) {
 
     for (int i=0; i<n; i++){
         min = arr[i];
-        // ⚠️ You are only tracking the minimum VALUE (reference),
-        // not its INDEX. This becomes a problem for swapping.
 
-        for (int j=i; j<n; j++){
+        for (int j=i+1; j<n; j++){
             if (arr[j].getIdNumber() < min.getIdNumber())
                 min = arr[j];
-                // ⚠️ You lose where this min came from (its index)
+                //we need to keep track of min index
         }
 
         arr[i] = min;
-        // ⚠️ Problem:
-        // You overwrite arr[i] with min,
-        // BUT you never put the old arr[i] anywhere.
-
-        // ⚠️ This causes:
-        // - duplicates of the minimum
-        // - loss of original elements
+        // where do we place arr[i]
     }
 }
 
