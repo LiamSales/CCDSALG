@@ -27,24 +27,17 @@ public class SortingAlgorithms {
 
 
     public void selectionSort(Record[] arr, int n) {
-        // TODO: Implement this sorting algorithm here.
-
-        //loop through i, find the smallest 
-        //swap it with arr[i]
-
+        
         Record min;
-        int j=0;
 
         for (int i=0; i<n; i++){
-
-            while (j<n){
-                //use i and j to find the smallest
-                j++;
+            min=arr[i];
+            for (int j=i; j<n; j++){
+                if (arr[j].getIdNumber()<min.getIdNumber())
+                    min = arr[j];
             }
-
             arr[i] = min;
         }
-
     }
 
     public void mergeSort(Record[] arr, int p, int r) {
@@ -53,9 +46,7 @@ public class SortingAlgorithms {
     }
 
     /*
-     * Define AT LEAST ONE more sorting algorithm here, apart from the
-     * ones given above. Make sure that the method accepts an array of
-     * records
+    heap sort
      */
 
 }
