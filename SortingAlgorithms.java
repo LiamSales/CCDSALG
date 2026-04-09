@@ -26,19 +26,31 @@ public class SortingAlgorithms {
     }
 
 
-    public void selectionSort(Record[] arr, int n) {
+public void selectionSort(Record[] arr, int n) {
         
-        Record min;
+    Record min;
 
-        for (int i=0; i<n; i++){
-            min=arr[i];
-            for (int j=i; j<n; j++){
-                if (arr[j].getIdNumber()<min.getIdNumber())
-                    min = arr[j];
-            }
-            arr[i] = min;
+    for (int i=0; i<n; i++){
+        min = arr[i];
+        // ⚠️ You are only tracking the minimum VALUE (reference),
+        // not its INDEX. This becomes a problem for swapping.
+
+        for (int j=i; j<n; j++){
+            if (arr[j].getIdNumber() < min.getIdNumber())
+                min = arr[j];
+                // ⚠️ You lose where this min came from (its index)
         }
+
+        arr[i] = min;
+        // ⚠️ Problem:
+        // You overwrite arr[i] with min,
+        // BUT you never put the old arr[i] anywhere.
+
+        // ⚠️ This causes:
+        // - duplicates of the minimum
+        // - loss of original elements
     }
+}
 
     public void mergeSort(Record[] arr, int p, int r) {
         // TODO: Implement this sorting algorithm here.
