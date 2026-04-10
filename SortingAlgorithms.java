@@ -29,18 +29,20 @@ public class SortingAlgorithms {
 public void selectionSort(Record[] arr, int n) {
         
     Record min;
-    int mindex = 0;
 
     for (int i=0; i<n; i++){
         min = arr[i];
+        int mindex = i;
 
         for (int j=i+1; j<n; j++){
             if (arr[j].getIdNumber() < min.getIdNumber()){
                 min = arr[j];
-                mindex=j;
+                mindex = j;
             }
         }
+
         arr[mindex] = arr[i];
+
         arr[i] = min;
     }
 }
