@@ -48,7 +48,13 @@ public void selectionSort(Record[] arr, int n) {
 }
 
     public void mergeSort(Record[] arr, int p, int r) {
-        // TODO: Implement this sorting algorithm here.
+
+        // Divide: Divide the list or array recursively into two halves (p and r) until it can no more be divided 
+        //use recursion
+
+        //base case ez sort 2 numbers
+
+        //ok idk how to merge tbh
 
     }
 
