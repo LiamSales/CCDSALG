@@ -49,12 +49,10 @@ public void selectionSort(Record[] arr, int n) {
 
     public void mergeSort(Record[] arr, int p, int r) {
 
-        // Divide: Divide the list or array recursively into two halves (p and r) until it can no more be divided 
-        //use recursion
+        //keep calling mergeSort till everything is small, this just divides our arrays
+    }
 
-        //base case ez sort 2 numbers
-
-        //ok idk how to merge tbh
+    private void merge(Record[] left, Record[]right, Record[] original){
 
     }
 
