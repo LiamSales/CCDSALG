@@ -47,7 +47,6 @@ public void selectionSort(Record[] arr, int n) {
     }
 }
 
-
     private void merge(int arr[], int p, int q, int r){
 
     }
@@ -63,7 +62,9 @@ public void selectionSort(Record[] arr, int n) {
             mergeSort(arr, p, q);
             mergeSort(arr, q+1, r); //so were just passing indices but were not giving a new array?
 
-        }
+            //same array, different "windows"
+
+        }//so everything is size 1 now?,  
 
     }
 
