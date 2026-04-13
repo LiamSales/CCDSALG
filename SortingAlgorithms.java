@@ -47,14 +47,26 @@ public void selectionSort(Record[] arr, int n) {
     }
 }
 
-    public void mergeSort(Record[] arr, int p, int r) {
 
-        //keep calling mergeSort till everything is small, this just divides our arrays
-    }
-
-    private void merge(Record[] left, Record[]right, Record[] original){
+    private void merge(int arr[], int p, int q, int r){
 
     }
+
+    public void mergeSort(Record[] arr, int p, int r) { //starting index p, ending index r
+
+        //stop when the subarray has 1 or 0 elements, we cant split
+
+        if (p<r){
+
+            int q = p+(r-p)/2; //this will always be center(?)
+
+            mergeSort(arr, p, q);
+            mergeSort(arr, q+1, r); //so were just passing indices but were not giving a new array?
+
+        }
+
+    }
+
 
     /*
     heap sort
