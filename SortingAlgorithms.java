@@ -50,13 +50,10 @@ public void selectionSort(Record[] arr, int n) {
     
 private void merge(Record[] arr, int p, int q, int r) {
 
-    // TODO 1: Determine sizes of the two subarrays
-    // Left subarray is from p to q
-    // Right subarray is from q+1 to r
-    // Size formula:
-    // left size  = q - p + 1
-    // right size = r - q
-    // WHY: We need exact sizes to create temporary arrays that hold copies
+    //We need exact sizes to create temporary arrays that hold copies
+
+    int np = q+1 - p;
+    int nr = r - q;
 
     // TODO 2: Create temporary arrays
     // Create two arrays:
@@ -120,6 +117,8 @@ public void mergeSort(Record[] arr, int p, int r) {
         mergeSort(arr, q + 1, r);
 
         merge(arr, p, q, r);
+
+        //were just holding indices then we pass all indices (all of them) to merge
     }
 }
 
