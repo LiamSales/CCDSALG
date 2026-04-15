@@ -55,20 +55,40 @@ private void merge(Record[] arr, int p, int q, int r) {
     int np = q+1 - p;
     int nr = r - q;
 
-    // TODO 2: Create temporary arrays
-    // Create two arrays:
-    // Record[] left
-    // Record[] right
+    Record[] left = new Record[np];
+    Record[] right = new Record[nr];
+
+    //sorry am stupid how does declaring a fixed size array work again under the hood
+
     // WHY: We cannot safely merge in-place because values will be overwritten.
     // These arrays act as safe copies of the data.
 
     // TODO 3: Copy data into temporary arrays
-    // Copy arr[p ... q] into left[]
-    // Copy arr[q+1 ... r] into right[]
-    // IMPORTANT:
-    // - left starts at index 0 but corresponds to arr[p]
-    // - right starts at index 0 but corresponds to arr[q+1]
+
+
+    int j = p;
+
+    for(int i=0; i<np; i++){
+        left[i] = arr[j];
+        j++;
+    }
+
+    j = q+1;
+
+    for(int i=0; i<nr; i++){
+        right[i] = arr[j];
+        j++;
+    }
+
+
     // WHY: We want clean, sequential access during merging
+
+
+    //ok figure out how to trace this and what the plan is because were starting to get lost again
+
+
+    //=== trace manually, then have chatgpt explain just so were on the same page
+
 
     // TODO 4: Initialize pointers
     // i = 0 → tracks position in left[]
