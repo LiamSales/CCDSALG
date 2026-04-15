@@ -48,8 +48,6 @@ public void selectionSort(Record[] arr, int n) {
 }
 
     
- // ===================== MERGE FUNCTION =====================
-
 private void merge(Record[] arr, int p, int q, int r) {
 
     // TODO 1: Determine sizes of the two subarrays
@@ -111,56 +109,21 @@ private void merge(Record[] arr, int p, int q, int r) {
 }
 
 
-
-// ===================== MERGE SORT FUNCTION =====================
-
 public void mergeSort(Record[] arr, int p, int r) {
 
-    // TODO 1: Base case
-    // If p >= r, stop recursion
-    // WHY:
-    // - A subarray of size 1 (or 0) is already sorted
-    // - Prevents infinite recursion
 
     if (p < r) {
 
-        // TODO 2: Find middle index
-        // q = p + (r - p) / 2
-        // WHY:
-        // - Splits array into two roughly equal halves
-        // - This version avoids integer overflow (best practice)
-
         int q = p + (r - p) / 2;
 
-        // TODO 3: Recursively sort left half
-        // mergeSort(arr, p, q)
-        // WHY:
-        // - This reduces the problem into smaller subproblems
-        // - Eventually reaches size 1 arrays
-
         mergeSort(arr, p, q);
-
-        // TODO 4: Recursively sort right half
-        // mergeSort(arr, q+1, r)
-        // WHY:
-        // - Same idea, but for the second half
-
         mergeSort(arr, q + 1, r);
-
-        // TODO 5: Merge the two sorted halves
-        // merge(arr, p, q, r)
-        // WHY:
-        // - At this point:
-        //     arr[p ... q] is sorted
-        //     arr[q+1 ... r] is sorted
-        // - This step combines them into one sorted segment
 
         merge(arr, p, q, r);
     }
 }
 
-    /*
-    heap sort
-     */
+public void heapSort() {}
+
 
 }
