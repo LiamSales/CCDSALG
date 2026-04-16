@@ -91,39 +91,24 @@ private void merge(Record[] arr, int p, int q, int r) {
 
     while (i < np && j < nr){ //ok standard stuff
 
-        if (left[i].getIdNumber() < right[j].getIdNumber()){
+        if (left[i].getIdNumber() <= right[j].getIdNumber()){
             arr[k] = left[i]; //ok this makes perfect sense
             i++;
-            k++;
         }
 
+        else{
+            arr[k] = right[j];
+            j++;
+        }
+
+        k++;
+
+        // - Both halves are already sorted (is this because this was called when it was a smaller array?)
+        // - We are combining them into a single sorted segment
+
+        //try figuring out the rest myself
+        
     }
-
-
-    // While i < left size AND j < right size:
-    //   compare left[i] and right[j] using getIdNumber()
-    //   put the smaller one into arr[k]
-    //   increment the pointer (i or j) depending on which was used
-    //   increment k
-    // WHY:
-    // - Both halves are already sorted (is this because this was called when it was a smaller array?)
-    // - We are combining them into a single sorted segment
-
-    // TODO 6: Copy remaining elements from left[]
-    // If i < left size:
-    //   copy all remaining left[i...] into arr[k...]
-    // WHY:
-    // - If right[] is exhausted first, left[] still has elements
-    // - These are already sorted, so just append
-
-    // TODO 7: Copy remaining elements from right[]
-    // If j < right size:
-    //   copy all remaining right[j...] into arr[k...]
-    // WHY:
-    // - Same logic as above, but for the right side
-
-    // FINAL RESULT:
-    // arr[p ... r] is now fully sorted
 }
 
 
