@@ -47,6 +47,7 @@ public void selectionSort(Record[] arr, int n) {
     }
 }
 
+    //Merge does not sort from scratch, it only combines already sorted pieces.
     
 private void merge(Record[] arr, int p, int q, int r) {
 
@@ -139,6 +140,7 @@ public void mergeSort(Record[] arr, int p, int r) {
         merge(arr, p, q, r);
 
         //were just holding indices then we pass all indices (all of them) to merge
+        //They are sorted because of recursion, not because of merge().
     }
 }
 
