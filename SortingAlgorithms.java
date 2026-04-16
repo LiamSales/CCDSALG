@@ -84,20 +84,9 @@ private void merge(Record[] arr, int p, int q, int r) {
 
     // WHY: We want clean, sequential access during merging
 
-
-    //ok figure out how to trace this and what the plan is because were starting to get lost again
-
-
-    //=== trace manually, then have chatgpt explain just so were on the same page
-
-
-    // TODO 4: Initialize pointers
-    // i = 0 → tracks position in left[]
-    // j = 0 → tracks position in right[]
-    // k = p → tracks position in original array
-    // WHY:
-    // - i and j move through temp arrays
-    // - k writes back into original array in correct position
+    int i = 0;
+    j = 0;
+    int k = p; // tracks position in original array
 
     // TODO 5: Merge while both arrays have elements
     // While i < left size AND j < right size:
