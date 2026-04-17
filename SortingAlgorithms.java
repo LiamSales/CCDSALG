@@ -64,9 +64,6 @@ private void merge(Record[] arr, int p, int q, int r) {
     // WHY: We cannot safely merge in-place because values will be overwritten.
     // These arrays act as safe copies of the data.
 
-    // TODO 3: Copy data into temporary arrays
-
-
     int j = p;
 
     for(int i=0; i<np; i++){
@@ -106,7 +103,9 @@ private void merge(Record[] arr, int p, int q, int r) {
         // - Both halves are already sorted (is this because this was called when it was a smaller array?)
         // - We are combining them into a single sorted segment
 
-        //try figuring out the rest myself
+
+        //if right is done, move all the remaining i to k
+        //if left is done, move all the remaining j to k
         
     }
 }
