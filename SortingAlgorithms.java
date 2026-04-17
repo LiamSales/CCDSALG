@@ -47,22 +47,13 @@ public void selectionSort(Record[] arr, int n) {
     }
 }
 
-    //Merge does not sort from scratch, it only combines already sorted pieces.
-
 private void merge(Record[] arr, int p, int q, int r) {
-
-    //We need exact sizes to create temporary arrays that hold copies
 
     int np = q+1 - p;
     int nr = r - q;
 
     Record[] left = new Record[np];
     Record[] right = new Record[nr];
-
-    //sorry am stupid how does declaring a fixed size array work again under the hood
-
-    // WHY: We cannot safely merge in-place because values will be overwritten.
-    // These arrays act as safe copies of the data.
 
     int j = p;
 
@@ -78,18 +69,15 @@ private void merge(Record[] arr, int p, int q, int r) {
         j++;
     }
 
-
-    // WHY: We want clean, sequential access during merging
-
     int i = 0;
     j = 0;
-    int k = p; // tracks position in original array
+    int k = p;
 
 
-    while (i < np && j < nr){ //ok standard stuff
+    while (i < np && j < nr){
 
         if (left[i].getIdNumber() <= right[j].getIdNumber()){
-            arr[k] = left[i]; //ok this makes perfect sense
+            arr[k] = left[i]; 
             i++;
         }
 
@@ -97,22 +85,25 @@ private void merge(Record[] arr, int p, int q, int r) {
             arr[k] = right[j];
             j++;
         }
+        k++;    
 
-        k++;
-
-        // - Both halves are already sorted (is this because this was called when it was a smaller array?)
-        // - We are combining them into a single sorted segment
-
-
-        //if right is done, move all the remaining i to k
-        //if left is done, move all the remaining j to k
-        
     }
+
+    while (i < np) {
+        arr[k] = left[i];
+        i++;
+        k++;
+    }
+
+    while (j < nr) {
+        arr[k] = right[j];
+        j++;
+        k++;
+    }
+    
 }
 
-
 public void mergeSort(Record[] arr, int p, int r) {
-
 
     if (p < r) {
 
@@ -121,16 +112,8 @@ public void mergeSort(Record[] arr, int p, int r) {
         mergeSort(arr, p, q);
         mergeSort(arr, q + 1, r);
 
-        
-        //were just holding indices then we pass all indices (all of them) to merge
-        //They are sorted because of recursion, not because of merge().
-
-        //ok new thing... when we call recursion, the remainder only happens AFTER the base case, so we start moving up here with everything starting now
-        merge(arr, p, q, r);
-        //so in actuality its actually a depth first search starting from the left
+        merge(arr, p, q, r); //ok i get the logic, im a little slow in tracing it though i think i need a video
     }
-
-    // we reach a single element here, no effect (empty function since void), it just goes a layer up like nothing happened
 }
 
 public void heapSort() {}
