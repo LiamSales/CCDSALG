@@ -73,7 +73,6 @@ private void merge(Record[] arr, int p, int q, int r) {
     j = 0;
     int k = p;
 
-
     while (i < np && j < nr){
 
         if (left[i].getIdNumber() <= right[j].getIdNumber()){
@@ -100,6 +99,9 @@ private void merge(Record[] arr, int p, int q, int r) {
         j++;
         k++;
     }
+
+    //arr 0-3 becomes first 4 elements sorted on our first pass
+    //ok lowkenuinely puzzled on how its reassembled
     
 }
 
@@ -112,7 +114,7 @@ public void mergeSort(Record[] arr, int p, int r) {
         mergeSort(arr, p, q);
         mergeSort(arr, q + 1, r);
 
-        merge(arr, p, q, r); //ok i get the logic, im a little slow in tracing it though i think i need a video
+        merge(arr, p, q, r);
     }
 }
 
