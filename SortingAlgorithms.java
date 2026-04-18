@@ -118,7 +118,19 @@ public void mergeSort(Record[] arr, int p, int r) {
     }
 }
 
-public void heapSort() {}
+public void heapify(int[] arr, int n, int i){
 
+}
+
+
+public void heapSort(int[] arr) {
+
+}
+
+//It is an optimized version of selection sort.
+//The algorithm repeatedly finds the maximum (or minimum) element and swaps it with the last (or first) element.
+//Using a binary heap allows efficient access to the max (or min) element in O(log n) time instead of O(n).
+//The process is repeated for the remaining elements until the array is sorted.
+//Overall, Heap Sort achieves a time complexity of O(n log n).
 
 }
