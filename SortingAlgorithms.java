@@ -164,8 +164,11 @@ public class SortingAlgorithms {
 // Subtree rooted at i becomes a valid max heap.
 
 
+
+//we never actually make a tree, its always just an in place array but we think of it as a tree by accessing stuff with math
     private void buildMaxHeap(Record[] arr, int n){
-        
+
+        int i = n/2 - 1; //get the last non leaf node (learn this on paper)
     }
 
 // Convert the entire array into a valid max heap.
@@ -195,6 +198,7 @@ public class SortingAlgorithms {
 
 
     private void heapSort(Record[] arr, int n){
+
         buildMaxHeap(arr, n);
     }
 // HIGH-LEVEL IDEA:
