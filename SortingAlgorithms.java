@@ -114,36 +114,26 @@ public class SortingAlgorithms {
         }
     }
 
-// A max heap guarantees: parent >= children.
-
-// IMPORTANT:
-// - You DO NOT build an actual tree structure.
-// - The array itself REPRESENTS a binary tree.
-
-// INDEX RELATIONSHIPS (very important):
-// For any index i:
-//   left child  = 2*i + 1
-//   right child = 2*i + 2
-//   parent      = (i - 1) / 2
 
     private void heapify(Record[] arr, int n, int i){
-        
+
+        int left = 2*i + 1;
+        int right = 2*i + 2;
+        int largest = i;
+
+        if (arr[left].getIdNumber() > arr[i].getIdNumber())
+            largest = left;
+
+        if (arr[right].getIdNumber() > arr[largest].getIdNumber())
+            largest = right;
+
+
+
     }
 
-// Fix a subtree so it satisfies the max heap property.
-//
-// INPUT:
-// arr → the array (represents the heap)
-// n   → current heap size (IMPORTANT: heap shrinks during sorting)
-// i   → index of the node to fix
 //
 // TODO STEPS:
-//
-// 1. Assume the current node (i) is the largest.
-//
-// 2. Compute indices of children:
-//      left  = 2*i + 1
-//      right = 2*i + 2
+
 //
 // 3. Compare with LEFT child:
 //      If left < n (valid index) AND arr[left] > arr[largest]:
