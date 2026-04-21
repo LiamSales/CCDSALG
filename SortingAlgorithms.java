@@ -121,30 +121,24 @@ public class SortingAlgorithms {
         int right = 2*i + 2;
         int largest = i;
 
+        Record temp;
+
         if (arr[left].getIdNumber() > arr[i].getIdNumber())
             largest = left;
 
         if (arr[right].getIdNumber() > arr[largest].getIdNumber())
             largest = right;
 
+        if (largest!=i){
+            temp = arr[i];
+            arr[i] = arr[largest];
+            arr[largest] = temp;
+        }
 
 
     }
 
-//
-// TODO STEPS:
 
-//
-// 3. Compare with LEFT child:
-//      If left < n (valid index) AND arr[left] > arr[largest]:
-//          update largest = left
-//
-// 4. Compare with RIGHT child:
-//      If right < n AND arr[right] > arr[largest]:
-//          update largest = right
-//
-// 5. If largest != i:
-//      → Swap arr[i] with arr[largest]
 //      → Recursively call heapify on index = largest
 //
 // WHY recursion?
