@@ -126,7 +126,7 @@ public class SortingAlgorithms {
 //   right child = 2*i + 2
 //   parent      = (i - 1) / 2
 
-    private void heapify(){
+    private void heapify(Record[] arr, int n, int i){
         
     }
 
@@ -165,36 +165,14 @@ public class SortingAlgorithms {
 
 
 
-//we never actually make a tree, its always just an in place array but we think of it as a tree by accessing stuff with math
     private void buildMaxHeap(Record[] arr, int n){
 
-        int i = n/2 - 1; //get the last non leaf node (learn this on paper)
-    }
+        for(int i = n/2 - 1;i<=0;i--){ //so this is all non leaf nodes
+            heapify(arr, n, i);
+        }
+    } // is this it for building the max heap?
 
-// Convert the entire array into a valid max heap.
-//
-// KEY INSIGHT:
-// - Leaves are already valid heaps.
-// - Only need to process NON-LEAF nodes.
-//
-// HOW TO FIND LAST NON-LEAF:
-//   index = n/2 - 1
-//
-// TODO STEPS:
-//
-// 1. Start from i = n/2 - 1
-//
-// 2. Loop backwards to i = 0:
-//
-//      For each i:
-//          call heapify(arr, n, i)
-//
-// WHY backwards?
-// You must fix lower levels BEFORE upper levels.
-//
-// RESULT:
 // Entire array now satisfies max heap property.
-//
 
 
     private void heapSort(Record[] arr, int n){
