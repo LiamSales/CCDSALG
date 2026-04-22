@@ -122,57 +122,55 @@ public class SortingAlgorithms {
 
         Record temp;
 
-        // ❓ Before accessing arr[left], what condition must be true about left and n?
-
         if (arr[left].getIdNumber() > arr[i].getIdNumber())
             largest = left;
 
-        // ❓ Before accessing arr[right], what condition must be true about right and n?
-
-        // ❓ Why do we compare with arr[largest] here instead of arr[i]?
-
-        if (arr[right].getIdNumber() > arr[largest].getIdNumber())
+        if (arr[right]!=null && arr[right].getIdNumber() > arr[largest].getIdNumber())
             largest = right;
-
-        // ❓ If largest != i, what must we do first?
 
         if (largest!=i){
             temp = arr[i];
             arr[i] = arr[largest];
             arr[largest] = temp;
 
-            // ❓ After swapping, which index may now violate heap property?
+        int parent = (i-1)/2;
 
-            // ❓ What function should be called to fix that subtree?
+        if (parent<=0)
+            heapify(arr,n,parent);
 
-            // ❓ What arguments should be passed?
         }
     }
 
     private void buildMaxHeap(Record[] arr, int n){
-
-        // ❓ What is the correct starting index? (non-leaf)
-
-        // ❓ Should the loop move forward or backward?
-
-        for(int i = n/2 - 1;i<=0;i--){
+        for(int i = n/2 - 1;i >=0 ;i--){
             heapify(arr, n, i);
         }
     }
 
     private void heapSort(Record[] arr, int n){
 
-        buildMaxHeap(arr, n);
+        Record temp;
 
-        // ❓ Where is the maximum element after building the heap?
+        for (int i=n; i>=0; i--){
+            buildMaxHeap(arr, n);
 
-        // ❓ What two indices should be swapped to place it correctly?
+            temp = arr[i];
+            arr[i] = arr[0];
+            arr [0] = temp;
+        }
 
-        // ❓ After swapping, what should the new heap size be?
-
-        // ❓ Which index should we heapify from after the swap?
-
-        // ❓ How many times should this process repeat?
     }
 
+
+    // TODO 4: Add extraction loop:
+    // loop from i = n-1 down to 1
+
+    // TODO 5: Inside loop:
+    // swap arr[0] (max) with arr[i]
+
+    // TODO 6: After swap:
+    // reduce heap size → use i as new n
+
+    // TODO 7: Call heapify on root:
+    // heapify(arr, i, 0)
 }
