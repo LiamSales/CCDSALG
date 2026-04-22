@@ -114,7 +114,6 @@ public class SortingAlgorithms {
         }
     }
 
-
     private void heapify(Record[] arr, int n, int i){
 
         int left = 2*i + 1;
@@ -123,35 +122,57 @@ public class SortingAlgorithms {
 
         Record temp;
 
+        // ❓ Before accessing arr[left], what condition must be true about left and n?
+
         if (arr[left].getIdNumber() > arr[i].getIdNumber())
             largest = left;
 
+        // ❓ Before accessing arr[right], what condition must be true about right and n?
+
+        // ❓ Why do we compare with arr[largest] here instead of arr[i]?
+
         if (arr[right].getIdNumber() > arr[largest].getIdNumber())
             largest = right;
+
+        // ❓ If largest != i, what must we do first?
 
         if (largest!=i){
             temp = arr[i];
             arr[i] = arr[largest];
             arr[largest] = temp;
+
+            // ❓ After swapping, which index may now violate heap property?
+
+            // ❓ What function should be called to fix that subtree?
+
+            // ❓ What arguments should be passed?
         }
-
-
     }
 
-
     private void buildMaxHeap(Record[] arr, int n){
+
+        // ❓ What is the correct starting index? (non-leaf)
+
+        // ❓ Should the loop move forward or backward?
 
         for(int i = n/2 - 1;i<=0;i--){
             heapify(arr, n, i);
         }
     }
 
-
-
-
     private void heapSort(Record[] arr, int n){
 
         buildMaxHeap(arr, n);
+
+        // ❓ Where is the maximum element after building the heap?
+
+        // ❓ What two indices should be swapped to place it correctly?
+
+        // ❓ After swapping, what should the new heap size be?
+
+        // ❓ Which index should we heapify from after the swap?
+
+        // ❓ How many times should this process repeat?
     }
 
 }
