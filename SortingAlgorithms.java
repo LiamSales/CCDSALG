@@ -151,25 +151,17 @@ public class SortingAlgorithms {
 
         Record temp;
 
-        for (int i=n; i>=0; i--){
+        for (int i=n-1; i>0; i--){
+
             buildMaxHeap(arr, n);
 
             temp = arr[i];
             arr[i] = arr[0];
             arr [0] = temp;
+            n=i;
         }
 
     }
-
-
-    // TODO 4: Add extraction loop:
-    // loop from i = n-1 down to 1
-
-    // TODO 5: Inside loop:
-    // swap arr[0] (max) with arr[i]
-
-    // TODO 6: After swap:
-    // reduce heap size → use i as new n
 
     // TODO 7: Call heapify on root:
     // heapify(arr, i, 0)
