@@ -139,82 +139,19 @@ public class SortingAlgorithms {
     }
 
 
-//      → Recursively call heapify on index = largest
-//
-// WHY recursion?
-// After swapping, the subtree below may now violate heap property.
-//
-// RESULT:
-// Subtree rooted at i becomes a valid max heap.
-
-
-
     private void buildMaxHeap(Record[] arr, int n){
 
-        for(int i = n/2 - 1;i<=0;i--){ //so this is all non leaf nodes
+        for(int i = n/2 - 1;i<=0;i--){
             heapify(arr, n, i);
         }
-    } // is this it for building the max heap?
+    }
 
-// Entire array now satisfies max heap property.
+
 
 
     private void heapSort(Record[] arr, int n){
 
         buildMaxHeap(arr, n);
     }
-// HIGH-LEVEL IDEA:
-// 1. Build max heap
-// 2. Repeatedly extract the maximum (root)
-// 3. Place it at the end of the array
-// 4. Shrink heap and fix it again
-//
-// TODO STEPS:
-//
-// STEP 1: Build max heap
-//      call buildMaxHeap(arr, n)
-//
-// After this:
-//      arr[0] = largest element
-//
-//
-// STEP 2: Extract elements one by one
-//
-// Loop from i = n-1 down to 1:
-//
-//   a. Swap arr[0] with arr[i]
-//
-//      WHY:
-//      - arr[0] is the largest
-//      - move it to its correct final position at the end
-//
-//   b. Reduce heap size:
-//      new heap size = i
-//
-//      WHY:
-//      - last element is now sorted
-//      - exclude it from heap
-//
-//   c. Call heapify on root (index 0)
-//
-//      WHY:
-//      - swapping broke the heap property
-//      - need to restore it
-//
-//
-// STEP 3: Continue until heap size = 1
-//
-// RESULT:
-// Array becomes sorted in ascending order
 
-// Heap sort = selection sort + efficient max retrieval
-//
-// - Instead of scanning O(n) for max:
-//     heap gives max in O(1)
-//     fixing heap costs O(log n)
-//
-// - Overall complexity:
-//     O(n log n)
-//
-// - Sorting happens IN-PLACE (no extra arrays like merge sort)
 }
