@@ -114,32 +114,38 @@ public class SortingAlgorithms {
         }
     }
 
-    private void heapify(Record[] arr, int n, int i){
+private void heapify(Record[] arr, int n, int i){
 
-        int left = 2*i + 1;
-        int right = 2*i + 2;
-        int largest = i;
+    int left = 2*i + 1;
+    int right = 2*i + 2;
+    int largest = i;
 
-        Record temp;
+    Record temp;
 
-        if (arr[left].getIdNumber() > arr[i].getIdNumber())
-            largest = left;
 
-        if (arr[right]!=null && arr[right].getIdNumber() > arr[largest].getIdNumber())
-            largest = right;
+    // check (left < n) BEFORE accessing arr[left] -- dont get why
+    if (arr[left].getIdNumber() > arr[i].getIdNumber())
+        largest = left;
 
-        if (largest!=i){
-            temp = arr[i];
-            arr[i] = arr[largest];
-            arr[largest] = temp;
+    if (right<n && arr[right].getIdNumber() > arr[largest].getIdNumber())
+        largest = right;
 
+    if (largest!=i){
+        temp = arr[i];
+        arr[i] = arr[largest];
+        arr[largest] = temp;
+        // You are going UP the tree (to parent)
         int parent = (i-1)/2;
 
-        if (parent<=0)
+        if (parent>=0)
             heapify(arr,n,parent);
 
-        }
+        // ✔ FIX (conceptually):
+        // After swapping, the violation is BELOW (at index "largest"),
+        // so you must recurse DOWN:
+        // heapify(arr, n, largest);
     }
+}
 
     private void buildMaxHeap(Record[] arr, int n){
         for(int i = n/2 - 1;i >=0 ;i--){
