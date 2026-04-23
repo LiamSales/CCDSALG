@@ -114,6 +114,9 @@ public class SortingAlgorithms {
         }
     }
 
+    //so we arrange it (log n) in a way where we can access the max in constant, then move to right position
+    //
+
 private void heapify(Record[] arr, int n, int i){
 
     int left = 2*i + 1;
@@ -134,18 +137,10 @@ private void heapify(Record[] arr, int n, int i){
     if (largest!=i){
         temp = arr[i];
         arr[i] = arr[largest];
-        arr[largest] = temp;
-        // You are going UP the tree (to parent)
-        int parent = (i-1)/2;
-
-        if (parent>=0)
-            heapify(arr,n,parent);
-
-        // ✔ FIX (conceptually):
-        // After swapping, the violation is BELOW (at index "largest"),
-        // so you must recurse DOWN:
-        // heapify(arr, n, largest);
+ 
     }
+    //ok so the problem is that im going up the parents first but i should go to the LEFT after the swap,
+    //go to the next breadth, so thats the next non leaf node after fixing my current
 }
 
     private void buildMaxHeap(Record[] arr, int n){
