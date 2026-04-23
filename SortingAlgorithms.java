@@ -122,6 +122,7 @@ private void heapify(Record[] arr, int n, int i){
 
     Record temp;
 
+    //problem is that we were going up the tree but what if the largest is a leaf node?
 
     // check (left < n) BEFORE accessing arr[left] -- dont get why
     if (arr[left].getIdNumber() > arr[i].getIdNumber())
@@ -151,6 +152,10 @@ private void heapify(Record[] arr, int n, int i){
         for(int i = n/2 - 1;i >=0 ;i--){
             heapify(arr, n, i);
         }
+
+        //leaves already have valid heaps?
+
+        //atp i need to watch a youtube video
     }
 
     private void heapSort(Record[] arr, int n){
