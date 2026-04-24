@@ -135,12 +135,27 @@ private void heapify(Record[] arr, int n, int i){
         largest = right;
 
     if (largest!=i){
-        temp = arr[i];
-        arr[i] = arr[largest];
+
+    temp = arr[i];
+    arr[i] = arr[largest];
+    arr[largest] = temp;
  
     }
-    //ok so the problem is that im going up the parents first but i should go to the LEFT after the swap,
+    // ok so the problem is that im going up the parents first but i should go to the LEFT after the swap,
+    // go to the index "largest" (could be left OR right)
+
+
     //go to the next breadth, so thats the next non leaf node after fixing my current
+    
+    // continue fixing the subtree where the violation moved
+
+    // After swapping, the subtree at "largest" may still be invalid
+    // You MUST continue heapify DOWNWARD
+
+    // ✔ FIX (conceptually):
+    // heapify(arr, n, largest);    
+    // Because one swap does NOT guarantee the subtree is fixed
+
 }
 
     private void buildMaxHeap(Record[] arr, int n){
@@ -151,24 +166,29 @@ private void heapify(Record[] arr, int n, int i){
         //leaves already have valid heaps?
 
         //atp i need to watch a youtube video
+
+        //so this should go all the way to 0 no matter what
     }
 
     private void heapSort(Record[] arr, int n){
 
         Record temp;
 
+        buildMaxHeap(arr, n);
+        
         for (int i=n-1; i>0; i--){
 
-            buildMaxHeap(arr, n);
 
             temp = arr[i];
             arr[i] = arr[0];
             arr [0] = temp;
             n=i;
+// You already pass i into heapify,
+// so this line is redundant and confusing
+
+            // After swap, root is invalid → must fix heap
         }
 
     }
 
-    // TODO 7: Call heapify on root:
-    // heapify(arr, i, 0)
 }
