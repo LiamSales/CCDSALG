@@ -125,9 +125,7 @@ private void heapify(Record[] arr, int n, int i){
 
     Record temp;
 
-    //problem is that we were going up the tree but what if the largest is a leaf node?
-
-    // check (left < n) BEFORE accessing arr[left] -- dont get why
+    // check (left < n)
     if (arr[left].getIdNumber() > arr[i].getIdNumber())
         largest = left;
 
@@ -141,18 +139,14 @@ private void heapify(Record[] arr, int n, int i){
     arr[largest] = temp;
  
     }
-    // ok so the problem is that im going up the parents first but i should go to the LEFT after the swap,
-    // go to the index "largest" (could be left OR right)
 
-
-    //go to the next breadth, so thats the next non leaf node after fixing my current
+    // go to the index "largest" (could be left OR right) after the swap
     
     // continue fixing the subtree where the violation moved
 
     // After swapping, the subtree at "largest" may still be invalid
     // You MUST continue heapify DOWNWARD
 
-    // ✔ FIX (conceptually):
     // heapify(arr, n, largest);    
     // Because one swap does NOT guarantee the subtree is fixed
 
@@ -162,12 +156,6 @@ private void heapify(Record[] arr, int n, int i){
         for(int i = n/2 - 1;i >=0 ;i--){
             heapify(arr, n, i);
         }
-
-        //leaves already have valid heaps?
-
-        //atp i need to watch a youtube video
-
-        //so this should go all the way to 0 no matter what
     }
 
     private void heapSort(Record[] arr, int n){
@@ -183,10 +171,9 @@ private void heapify(Record[] arr, int n, int i){
             arr[i] = arr[0];
             arr [0] = temp;
             n=i;
-// You already pass i into heapify,
-// so this line is redundant and confusing
-
-            // After swap, root is invalid → must fix heap
+    // You already pass i into heapify,
+    // so this line is redundant and confusing
+    // After swap, root is invalid → must fix heap
         }
 
     }
