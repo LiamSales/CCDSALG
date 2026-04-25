@@ -125,11 +125,10 @@ private void heapify(Record[] arr, int n, int i){
 
     Record temp;
 
-    // check (left < n) just for checking the leaf nodes right? i cant imagine this is needed for larger more root sided nodes
     if (left < n && arr[left].getIdNumber() > arr[i].getIdNumber())
         largest = left;
 
-    if (right<n && arr[right].getIdNumber() > arr[largest].getIdNumber())
+    if (right < n && arr[right].getIdNumber() > arr[largest].getIdNumber())
         largest = right;
 
     if (largest!=i){
@@ -137,10 +136,10 @@ private void heapify(Record[] arr, int n, int i){
     temp = arr[i];
     arr[i] = arr[largest];
     arr[largest] = temp;
+    heapify(arr, n, largest);    
  
     }
 
-    heapify(arr, n, largest);    
     //corrections downward, basically an error check after you swap the ones on top;
     //we start from the bottom yes but then when we move up it gets messed up so we gotta fix every time
 
@@ -162,13 +161,11 @@ private void heapify(Record[] arr, int n, int i){
         
         for (int i=n-1; i>0; i--){
 
-
             temp = arr[i];
             arr[i] = arr[0];
             arr [0] = temp;
-            n=i;
-    // You already pass i into heapify,
-    // so this line is redundant and confusing
+
+    // shouldnt build max heap be inside the loop, the loop seems out of place.
     // After swap, root is invalid → must fix heap
         }
 
