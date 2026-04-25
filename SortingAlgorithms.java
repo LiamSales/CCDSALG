@@ -125,8 +125,8 @@ private void heapify(Record[] arr, int n, int i){
 
     Record temp;
 
-    // check (left < n)
-    if (arr[left].getIdNumber() > arr[i].getIdNumber())
+    // check (left < n) just for checking the leaf nodes right? i cant imagine this is needed for larger more root sided nodes
+    if (left < n && arr[left].getIdNumber() > arr[i].getIdNumber())
         largest = left;
 
     if (right<n && arr[right].getIdNumber() > arr[largest].getIdNumber())
@@ -143,6 +143,8 @@ private void heapify(Record[] arr, int n, int i){
     heapify(arr, n, largest);    
     //corrections downward, basically an error check after you swap the ones on top;
     //we start from the bottom yes but then when we move up it gets messed up so we gotta fix every time
+
+    //so this will eventually reach the bottom, but thats just the end check
 
 }
 
