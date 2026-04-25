@@ -140,15 +140,9 @@ private void heapify(Record[] arr, int n, int i){
  
     }
 
-    // go to the index "largest" (could be left OR right) after the swap
-    
-    // continue fixing the subtree where the violation moved
-
-    // After swapping, the subtree at "largest" may still be invalid
-    // You MUST continue heapify DOWNWARD
-
-    // heapify(arr, n, largest);    
-    // Because one swap does NOT guarantee the subtree is fixed
+    heapify(arr, n, largest);    
+    //corrections downward, basically an error check after you swap the ones on top;
+    //we start from the bottom yes but then when we move up it gets messed up so we gotta fix every time
 
 }
 
