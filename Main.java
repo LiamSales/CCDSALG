@@ -19,6 +19,12 @@ public class Main {
 
         sortingAlgorithms.insertionSort(arr, n);
 
+        sortingAlgorithms.selectionSort(arr, n);
+
+        sortingAlgorithms.mergeSort(arr, 0, n-1);
+
+        sortingAlgorithms.heapSort (arr, n);
+
         //place in a new file
 
     }

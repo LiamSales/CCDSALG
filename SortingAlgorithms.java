@@ -144,7 +144,7 @@ public class SortingAlgorithms {
         }
     }
 
-    private void heapSort(Record[] arr, int n){
+    public void heapSort(Record[] arr, int n){
 
         Record temp;
 
