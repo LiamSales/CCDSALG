@@ -114,38 +114,29 @@ public class SortingAlgorithms {
         }
     }
 
-    //so we arrange it (log n) in a way where we can access the max in constant, then move to right position
-    //
+    private void heapify(Record[] arr, int n, int i){
 
-private void heapify(Record[] arr, int n, int i){
+        int left = 2*i + 1;
+        int right = 2*i + 2;
+        int largest = i;
 
-    int left = 2*i + 1;
-    int right = 2*i + 2;
-    int largest = i;
+        Record temp;
 
-    Record temp;
+        if (left < n && arr[left].getIdNumber() > arr[i].getIdNumber())
+            largest = left;
 
-    if (left < n && arr[left].getIdNumber() > arr[i].getIdNumber())
-        largest = left;
+        if (right < n && arr[right].getIdNumber() > arr[largest].getIdNumber())
+            largest = right;
 
-    if (right < n && arr[right].getIdNumber() > arr[largest].getIdNumber())
-        largest = right;
+        if (largest!=i){
 
-    if (largest!=i){
-
-    temp = arr[i];
-    arr[i] = arr[largest];
-    arr[largest] = temp;
-    heapify(arr, n, largest);    
- 
+        temp = arr[i];
+        arr[i] = arr[largest];
+        arr[largest] = temp;
+        heapify(arr, n, largest);    
+    
+        }
     }
-
-    //corrections downward, basically an error check after you swap the ones on top;
-    //we start from the bottom yes but then when we move up it gets messed up so we gotta fix every time
-
-    //so this will eventually reach the bottom, but thats just the end check
-
-}
 
     private void buildMaxHeap(Record[] arr, int n){
         for(int i = n/2 - 1;i >=0 ;i--){
@@ -157,7 +148,7 @@ private void heapify(Record[] arr, int n, int i){
 
         Record temp;
 
-        buildMaxHeap(arr, n);
+        buildMaxHeap(arr, n); //build only once, will need fixing
         
         for (int i=n-1; i>0; i--){
 
@@ -165,8 +156,8 @@ private void heapify(Record[] arr, int n, int i){
             arr[i] = arr[0];
             arr [0] = temp;
 
-    // shouldnt build max heap be inside the loop, the loop seems out of place.
-    // After swap, root is invalid → must fix heap
+            heapify(arr, i, 0); // to fix
+
         }
 
     }
