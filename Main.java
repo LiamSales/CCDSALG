@@ -1,47 +1,35 @@
 public class Main {
     public static void main(String[] args) {
 
-        //Use each sorting algorithm to sort each file from the data folder. 
-        // Make sure that when you call each sorting algorithm, you pass the original, unsorted list of records, not a list that has already been sorted previously.
-
-        //Verify that all your sorting algorithms work correctly on all the given datasets.
-
-        //Record the execution time and the empirical frequency count (number of steps) of each algorithm.
-
-        String path = ""; //outside the folder
-
+        String path = "../data/random100.txt";
         FileReader fileReader = new FileReader();
-
         Record[] arr = fileReader.readFile(path);
 
         int n = arr.length;
 
-        //unsorted
-
-        //make a copy then sort for comparisons
+        Record[] insertion = arr.clone();
+        Record[] selection = arr.clone();
+        Record[] merge = arr.clone();
+        Record[] heap = arr.clone();
 
         SortingAlgorithms sortingAlgorithms = new SortingAlgorithms();
 
+        System.out.println("Insertion: " +
+            measure(() -> sortingAlgorithms.insertionSort(insertion, n)));
 
+        System.out.println("Selection: " +
+            measure(() -> sortingAlgorithms.selectionSort(selection, n)));
 
-        sortingAlgorithms.selectionSort(arr, n);
+        System.out.println("Merge: " +
+            measure(() -> sortingAlgorithms.mergeSort(merge, 0, n-1)));
 
-        sortingAlgorithms.mergeSort(arr, 0, n-1);
+        System.out.println("Heap: " +
+            measure(() -> sortingAlgorithms.heapSort(heap, n)));
+    }
 
-        sortingAlgorithms.heapSort (arr, n);
-
-        //place in a new file
-
-        //To get the execution time in Java, you can use the built-in System.currentTimeMillis() function of Java. Below is an example of how to record the execution time of a certain algorithm:
-
-        long startTime = System.currentTimeMillis(); // store the current time
-        sortingAlgorithms.insertionSort(arr, n);
-        long endTime = System.currentTimeMillis(); // store the current time
-        long executionTime = endTime - startTime;
-
-        System.err.println(" "+ executionTime);
-
-        //modularize
-
+    private static long measure(Runnable algorithm) {
+        long start = System.currentTimeMillis();
+        algorithm.run();
+        return System.currentTimeMillis() - start;
     }
 }
