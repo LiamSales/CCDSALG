@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        String path = "../data/random100.txt";
+        String path = "../data/random100000.txt";
         FileReader fileReader = new FileReader();
         Record[] arr = fileReader.readFile(path);
 
