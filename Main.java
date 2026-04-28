@@ -27,6 +27,8 @@ public class Main {
             measure(() -> sortingAlgorithms.heapSort(heap, n)));
     }
 
+    //write to new file?
+
     private static long measure(Runnable algorithm) {
         long start = System.currentTimeMillis();
         algorithm.run();
