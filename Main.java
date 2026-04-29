@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -27,7 +30,27 @@ public class Main {
             measure(() -> sortingAlgorithms.heapSort(heap, n)));
     }
 
-    //write to new file?
+    private static void writeToFile(String path, Record[] arr){
+        try{
+
+            FileWriter writer = new FileWriter(path);
+
+            writer.write(arr.length + "\n");
+
+            for (Record r : arr) {
+                writer.write(r.getIdNumber() + " " + r.getName() + "\n");
+            }
+
+            writer.close();
+
+        }catch (IOException e) {
+
+        e.printStackTrace();
+        
+        }
+    }
+
+
 
     private static long measure(Runnable algorithm) {
         long start = System.currentTimeMillis();
