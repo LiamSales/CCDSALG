@@ -19,15 +19,22 @@ public class Main {
 
         System.out.println("Insertion: " +
             measure(() -> sortingAlgorithms.insertionSort(insertion, n)));
+            writeToFile("../data/insertion.txt", insertion);
 
         System.out.println("Selection: " +
             measure(() -> sortingAlgorithms.selectionSort(selection, n)));
+            writeToFile("../data/selection.txt", selection);
+
 
         System.out.println("Merge: " +
             measure(() -> sortingAlgorithms.mergeSort(merge, 0, n-1)));
+            writeToFile("../data/merge.txt", merge);
+
 
         System.out.println("Heap: " +
             measure(() -> sortingAlgorithms.heapSort(heap, n)));
+            writeToFile("../data/heap.txt", heap);
+
     }
 
     private static void writeToFile(String path, Record[] arr){
@@ -46,7 +53,7 @@ public class Main {
         }catch (IOException e) {
 
         e.printStackTrace();
-        
+
         }
     }
 
