@@ -2,6 +2,7 @@
  * You are NOT allowed to modify any of the given method headers.
  */
 
+
 public class SortingAlgorithms {
 
     /*
@@ -12,7 +13,7 @@ public class SortingAlgorithms {
 
     public void insertionSort(Record[] arr, int n) {
 
-        int count=0;
+        long count=0;
 
          count++;
 
@@ -38,7 +39,7 @@ public class SortingAlgorithms {
 
     public void selectionSort(Record[] arr, int n) {
         
-        int count=0;
+        long count=0;
 
         Record min; count++;
 
@@ -70,7 +71,7 @@ public class SortingAlgorithms {
 
     }
 
-    private void merge(Record[] arr, int p, int q, int r, int count) {
+    private void merge(Record[] arr, int p, int q, int r, long count) {
 
         int np = q+1 - p; count++;
         int nr = r - q; count++;
@@ -140,7 +141,7 @@ public class SortingAlgorithms {
         
     }
 
-    public void mergeSort(Record[] arr, int p, int r, int count) {
+    public void mergeSort(Record[] arr, int p, int r, long count) {
 
         count++;
         if (p < r) {
@@ -155,11 +156,11 @@ public class SortingAlgorithms {
 
         //fix this
         //if (sorted), also it looks like these are all done independently, we need to consolidate
-         System.out.println("Frequency count: " + count);
+        //System.out.println("Frequency count: " + count);
 
     }
 
-    private void heapify(Record[] arr, int n, int i, int count){
+    private void heapify(Record[] arr, int n, int i, long count){
 
         int left = 2*i + 1; count++;
         int right = 2*i + 2; count++;
@@ -186,7 +187,7 @@ public class SortingAlgorithms {
         }
     }
 
-    private void buildMaxHeap(Record[] arr, int n, int count){
+    private void buildMaxHeap(Record[] arr, int n, long count){
 
         count++;
         for(int i = n/2 - 1;i >=0 ;i--){
@@ -199,7 +200,7 @@ public class SortingAlgorithms {
 
     public void heapSort(Record[] arr, int n){
 
-        int count = 0;
+        long count = 0;
 
         Record temp; count++;
 

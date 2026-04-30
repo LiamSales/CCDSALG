@@ -17,20 +17,22 @@ public class Main {
 
         SortingAlgorithms sortingAlgorithms = new SortingAlgorithms();
 
+        System.out.println();
         System.out.println("Insertion: " +
             measure(() -> sortingAlgorithms.insertionSort(insertion, n)));
             writeToFile("../data/insertion.txt", insertion);
 
+        System.out.println();
         System.out.println("Selection: " +
             measure(() -> sortingAlgorithms.selectionSort(selection, n)));
             writeToFile("../data/selection.txt", selection);
 
-
+        System.out.println();
         System.out.println("Merge: " +
             measure(() -> sortingAlgorithms.mergeSort(merge, 0, n-1, 0)));
             writeToFile("../data/merge.txt", merge);
 
-
+        System.out.println();
         System.out.println("Heap: " +
             measure(() -> sortingAlgorithms.heapSort(heap, n)));
             writeToFile("../data/heap.txt", heap);
