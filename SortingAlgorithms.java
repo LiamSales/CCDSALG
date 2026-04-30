@@ -153,6 +153,8 @@ public class SortingAlgorithms {
             merge(arr, p, q, r, count); count++;
         }
 
+        //fix this
+        //if (sorted), also it looks like these are all done independently, we need to consolidate
          System.out.println("Frequency count: " + count);
 
     }

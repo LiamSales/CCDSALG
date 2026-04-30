@@ -4,7 +4,7 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
 
-        String path = "../data/merge.txt";
+        String path = "../data/random50000.txt";
         FileReader fileReader = new FileReader();
         Record[] arr = fileReader.readFile(path);
 
