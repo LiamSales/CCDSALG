@@ -15,8 +15,7 @@ public class SortingAlgorithms {
 
         long count=0;
 
-         count++;
-
+        count++;
         for (int i=1; i<n; i++){
 
             Record key = arr[i]; count++;
@@ -30,8 +29,7 @@ public class SortingAlgorithms {
 
             count++;
             count++;
-        }
-        // double check on paper for the for loop count
+        } count++;
 
         System.out.println("Frequency count: " + count);
     }
@@ -45,19 +43,22 @@ public class SortingAlgorithms {
 
         count++;
         for (int i=0; i<n; i++){
+
             min = arr[i]; count++;
             int mindex = i; count++;
 
             count++;
             for (int j=i+1; j<n; j++){
+
                 count++;
                 if (arr[j].getIdNumber() < min.getIdNumber()){
                     min = arr[j]; count++;
                     mindex = j; count++;
                 }
+
                 count++;
                 count++;
-            }
+            } count++;
 
             arr[mindex] = arr[i]; count++;
 
@@ -65,7 +66,8 @@ public class SortingAlgorithms {
 
             count++;
             count++;
-        }
+
+        } count++;
         
         System.out.println("Frequency count: " + count);
 
@@ -83,11 +85,13 @@ public class SortingAlgorithms {
 
         count++;
         for(int i=0; i<np; i++){
+
             left[i] = arr[j]; count++;
             j++; count++;
+
         count++;
         count++;
-        }
+        } count++;
 
         j = q+1; count++;
 
@@ -98,13 +102,13 @@ public class SortingAlgorithms {
         
         count++;
         count++;
-        }
+        } count++;
 
         int i = 0; count++;
         j = 0; count++;
         int k = p; count++;
 
-        //trace while
+        count++;
         while (i < np && j < nr){
 
             count++;
@@ -122,7 +126,7 @@ public class SortingAlgorithms {
         count++;
         }
 
-
+        count++;
         while (i < np) {
             arr[k] = left[i]; count++;
             i++; count++;
@@ -131,6 +135,7 @@ public class SortingAlgorithms {
             count++;
         }
 
+        count++;
         while (j < nr) {
             arr[k] = right[j]; count++;
             j++; count++;
@@ -168,7 +173,7 @@ public class SortingAlgorithms {
 
         Record temp; count++;
 
-        count++; //double because 2 conditions?
+        count++;
         if (left < n && arr[left].getIdNumber() > arr[i].getIdNumber())
             largest = left; count++;
 
@@ -195,7 +200,8 @@ public class SortingAlgorithms {
 
             count++;
             count++;
-        }
+        } count++;
+
     }
 
     public void heapSort(Record[] arr, int n){
@@ -217,7 +223,7 @@ public class SortingAlgorithms {
 
             count++;
             count++;
-        }
+        } count++;
 
         System.out.println("Frequency count: " + count);
 
