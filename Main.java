@@ -29,7 +29,7 @@ public class Main {
 
         System.out.println();
         System.out.println("Merge: " +
-            measure(() -> sortingAlgorithms.mergeSort(merge, 0, n-1, 0)));
+            measure(() -> sortingAlgorithms.mergeSort(merge, n)));
             writeToFile("../data/merge.txt", merge);
 
         System.out.println();

@@ -73,96 +73,93 @@ public class SortingAlgorithms {
 
     }
 
-    private void merge(Record[] arr, int p, int q, int r, long count) {
+    private void merge(Record[] arr, int p, int q, int r, long[] count) {
 
-        int np = q+1 - p; count++;
-        int nr = r - q; count++;
+        int np = q+1 - p; count[0]++;
+        int nr = r - q; count[0]++;
 
-        Record[] left = new Record[np]; count++;
-        Record[] right = new Record[nr]; count++;
+        Record[] left = new Record[np]; count[0]++;
+        Record[] right = new Record[nr]; count[0]++;
 
-        int j = p; count++;
+        int j = p; count[0]++;
 
-        count++;
+        count[0]++;
         for(int i=0; i<np; i++){
 
-            left[i] = arr[j]; count++;
-            j++; count++;
+            left[i] = arr[j]; count[0]++;
+            j++; count[0]++;
 
-        count++;
-        count++;
-        } count++;
+        count[0]++;
+        count[0]++;
+        } count[0]++;
 
-        j = q+1; count++;
+        j = q+1; count[0]++;
 
-        count++;
+        count[0]++;
         for(int i=0; i<nr; i++){
-            right[i] = arr[j]; count++;
-            j++; count++;
+            right[i] = arr[j]; count[0]++;
+            j++; count[0]++;
         
-        count++;
-        count++;
-        } count++;
+        count[0]++;
+        count[0]++;
+        } count[0]++;
 
-        int i = 0; count++;
-        j = 0; count++;
-        int k = p; count++;
+        int i = 0; count[0]++;
+        j = 0; count[0]++;
+        int k = p; count[0]++;
 
-        count++;
+        count[0]++;
         while (i < np && j < nr){
 
-            count++;
+            count[0]++;
             if (left[i].getIdNumber() <= right[j].getIdNumber()){
-                arr[k] = left[i];  count++;
-                i++; count++;
+                arr[k] = left[i];  count[0]++;
+                i++; count[0]++;
             }
 
             else{
-                arr[k] = right[j]; count++;
-                j++; count++;
+                arr[k] = right[j]; count[0]++;
+                j++; count[0]++;
             }
-            k++;  count++;  
+            k++;  count[0]++;  
         
-        count++;
+        count[0]++;
         }
 
-        count++;
+        count[0]++;
         while (i < np) {
-            arr[k] = left[i]; count++;
-            i++; count++;
-            k++; count++;
+            arr[k] = left[i]; count[0]++;
+            i++; count[0]++;
+            k++; count[0]++;
 
-            count++;
+            count[0]++;
         }
 
-        count++;
+        count[0]++;
         while (j < nr) {
-            arr[k] = right[j]; count++;
-            j++; count++;
-            k++; count++;
+            arr[k] = right[j]; count[0]++;
+            j++; count[0]++;
+            k++; count[0]++;
 
-        count++;
+        count[0]++;
         }
         
     }
 
-    public void mergeSort(Record[] arr, int p, int r, long count) {
+    public void mergeSort(Record[] arr, int n) {
+        long[] count = {0};
+        mergeSortHelper(arr, 0, n - 1, count);
+        System.out.println("Frequency count: " + count[0]);
+    }
 
-        count++;
+    private void mergeSortHelper(Record[] arr, int p, int r, long[] count) {
+        count[0]++;
         if (p < r) {
-
-            int q = p + (r - p) / 2; count++;
-
-            mergeSort(arr, p, q, count); count++;
-            mergeSort(arr, q + 1, r, count); count++;
-
-            merge(arr, p, q, r, count); count++;
+            int q = p + (r - p) / 2; count[0]++;
+            mergeSortHelper(arr, p, q, count); count[0]++;
+            mergeSortHelper(arr, q + 1, r, count); count[0]++;
+            merge(arr, p, q, r, count); count[0]++;
         }
-
-        //fix this
-        //if (sorted), also it looks like these are all done independently, we need to consolidate
-        //System.out.println("Frequency count: " + count);
-
     }
 
     private void heapify(Record[] arr, int n, int i, long count){
