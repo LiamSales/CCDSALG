@@ -147,3 +147,48 @@ long startTime = System.currentTimeMillis(); // store the current time
 long endTime = System.currentTimeMillis(); // store the current time
 long executionTime = endTime - startTime;
 ```
+
+
+## Major Course Output 2: Graphs
+
+# Project Specifications
+
+## SOCIAL GRAPH DATASET
+
+- For this project, you will work on a real-world dataset collected from Facebook (Traud, Mucha & Porter, 2005).
+
+- The data is composed of complete Facebook networks of selected American colleges and universities. It was collected as a snapshot of a single day in September 2005. In this project, you can focus only on a few selected colleges or universities.
+
+- The data describes the structure of the social network within a given college or university. It describes which accounts are friends with each other within the network. Names of the people are anonymized.
+
+- The social network structure, otherwise known as the social graph, can be represented as a graph, where each node represents an account. An edge is present from node `a` to node `b` if and only if `a` and `b` are friends.
+
+- For this project, the data has been converted from its original MATLAB (`.mat`) format to a text file for easier reading.
+
+- You are provided several sets of data of varying sizes from selected colleges and universities. If you want more datasets, you can check out this link, but you have to convert them to `.txt` by yourself.
+
+---
+
+## FILE FORMAT
+
+- Data is stored as a text file. There is a separate file for each network.
+
+- Instead of the actual names of the accounts, a unique integer identifier is given to each account. The identifiers for each file will always start from `0, 1, 2, …, n − 1`, where `n` is the number of accounts in the network.
+
+- The first line of the file contains two integers `n` and `e`, separated by a space. `n` is the number of accounts in the network, while `e` is the number of friendships in the network.
+
+- For this project, your code must at least be able to handle up to 5000 accounts in a single network. In the example data provided, this includes: Caltech36, Rice31, and Trinity100.
+
+- This is followed by `e` lines, each describing a link between two accounts. Each of these lines contains two integers `a` and `b` (`0 ≤ a, b < n`). This means that `a` is friends with `b`.
+
+- Remember that on Facebook, friendships are bi-directional. Therefore, if `a` is friends with `b`, it implies that `b` is also friends with `a`.
+
+### Example Text File
+
+```text
+6 5
+0 1
+0 3
+1 4
+2 3
+3 5
