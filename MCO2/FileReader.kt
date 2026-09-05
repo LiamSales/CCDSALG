@@ -16,18 +16,14 @@ class FileReader {
         // Create a list for every account
         val graph = Array(n) { mutableListOf<Int>() }
 
-        // Read all edges
-        repeat(e) {
+ 
+// this part needs to be redone manually
 
-            val line = scanner.readLine().split(" ")
+// learn "every" command in kotlin
 
-            val a = line[0].toInt()
-            val b = line[1].toInt()
+// for second char, add to index+1 of first, but that assumes all ID numbers are natural
 
-            // Friendship is bidirectional
-            graph[a].add(b)
-            graph[b].add(a)
-        }
+
 
         scanner.close()
 
