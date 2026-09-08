@@ -5,34 +5,31 @@ class FileReader {
     fun readFile(path: String): Array<MutableList<Int>> {
 
         val file = File(path)
-        val scanner = file.bufferedReader()
+        val reader = file.bufferedReader()
 
         // First line: n e
-        val firstLine = scanner.readLine().split(" ")
+        val firstLine = reader.readLine().trim().split(Regex("\\s+"))
 
         val n = firstLine[0].toInt()
         val e = firstLine[1].toInt()
 
-        // Create a list for every account
+        // graph[id] = list of friends
         val graph = Array(n) { mutableListOf<Int>() }
 
+        // Read every edge
+        repeat(e) {
 
-// learn "every" command in kotlin
+            val line = reader.readLine().trim().split(Regex("\\s+"))
 
-repeat(e) {
+            val a = line[0].toInt()
+            val b = line[1].toInt()
 
-    val line = scanner.readLine().split(" ")
+            // Bidirectional friendship
+            graph[a].add(b)
+            graph[b].add(a)
+        }
 
-    val a = line[0].toInt()
-    val b = line[1].toInt()
-
-    graph[a].add(b)
-    graph[b].add(a)
-}
-
-
-
-        scanner.close()
+        reader.close()
 
         return graph
     }
