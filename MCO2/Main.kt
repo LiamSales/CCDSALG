@@ -1,14 +1,10 @@
 fun main() {
-
-    // Ask for dataset path
+    
     print("Enter file path: ")
     val path = readLine()!!
-
-    // Read and build graph
     val fileReader = FileReader()
     val graph = fileReader.readFile(path)
 
-    // Main menu
     while (true) {
 
         println()
@@ -20,11 +16,19 @@ fun main() {
         when (readLine()) {
 
             "1" -> {
-                // TODO: Implement friend list
+                print("Enter ID number: ")
+                val id = readLine()!!
+                viewFriends(id)
             }
 
             "2" -> {
-                // TODO: Implement connection/path
+                print("Enter ID number: ")
+                val id1 = readLine()!!
+                print("Enter ID number: ")
+                val id2 = readLine()!!
+
+                viewConnection(id1,id2)
+
             }
 
             "3" -> {
