@@ -16,10 +16,12 @@ fun main() {
         when (readLine()) {
 
             "1" -> {
-                print("Enter ID number: ")
-                val id = readLine()!!
-                viewFriends(id)
-            }
+    print("Enter ID of person: ")
+    val id = readLine()!!.toInt()
+
+    val viewUser = ViewUser()
+    viewUser.displayFriendList(graph, id)
+}
 
             "2" -> {
                 print("Enter ID number: ")
