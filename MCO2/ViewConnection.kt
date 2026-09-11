@@ -9,11 +9,17 @@ class ViewConnection {
         id2: Int
     ) {
 
-        // TODO: Validate id1 and id2
+        if (id1 < 0 || id1 >= graph.size ||
+id2 < 0 || id2 >= graph.size ) {
+            println("Invalid ID.")
+            return
+        }
 
-        // TODO: Create/use Bidirectional BFS
 
-        // TODO: Find connection between id1 and id2
+
+val queue: Queue<Int> = LinkedList
+
+
 
         // TODO: Display connection if one exists
 
