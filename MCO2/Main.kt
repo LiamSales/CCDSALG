@@ -23,15 +23,16 @@ fun main() {
     viewUser.displayFriendList(graph, id)
 }
 
-            "2" -> {
-                print("Enter ID number: ")
-                val id1 = readLine()!!
-                print("Enter ID number: ")
-                val id2 = readLine()!!
+  "2" -> {
+    print("Enter ID number: ")
+    val id1 = readLine()!!.toInt()
 
-                viewConnection(id1,id2)
+    print("Enter ID number: ")
+    val id2 = readLine()!!.toInt()
 
-            }
+    val viewConnection = ViewConnection()
+    viewConnection.findConnection(graph, id1, id2)
+}
 
             "3" -> {
                 println("Exiting...")
