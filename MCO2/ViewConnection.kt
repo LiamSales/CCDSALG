@@ -15,9 +15,17 @@ id2 < 0 || id2 >= graph.size ) {
             return
         }
 
+if (start == target) return 0
+
+val queueStart = ArrayDeque<Node>().apply { add(start) }
+    val queueTarget = ArrayDeque<Node>().apply { add(target) }
+
+    // Visited sets with distance tracking
+    val visitedStart = mutableMapOf(start to 0)
+    val visitedTarget = mutableMapOf(target to 0)
 
 
-val queue: Queue<Int> = LinkedList
+
 
 
 
