@@ -1,6 +1,3 @@
-import java.util.LinkedList
-import java.util.Queue
-
 class ViewConnection {
 
     fun findConnection(
@@ -9,71 +6,52 @@ class ViewConnection {
         id2: Int
     ) {
 
-        if (id1 < 0 || id1 >= graph.size ||
-id2 < 0 || id2 >= graph.size ) {
-            println("Invalid ID.")
-            return
-        }
+        // TODO: Check whether id1 is a valid ID
 
-if (id1 == id2) return
+        // TODO: Check whether id2 is a valid ID
 
+        // TODO: If id1 == id2, decide how you want to display
+        //       the connection from a person to themselves
 
-        // TODO: Display connection if one exists
+        // TODO: Create the data structures needed for
+        //       bidirectional BFS
 
-        // TODO: Display message if no connection exists
+        // TODO: Start one search from id1
+
+        // TODO: Start the other search from id2
+
+        // TODO: Repeatedly expand the searches level by level
+
+        // TODO: When a node reached by the id1 search
+        //       has already been reached by the id2 search,
+        //       the searches have met
+
+        // TODO: Keep enough information to reconstruct
+        //       the actual path from id1 to id2
+
+        // TODO: If the searches meet, reconstruct and display
+        //       the connection
+
+        // TODO: If both searches finish without meeting,
+        //       report that no connection exists
     }
 
 
-
-fun bidirectionalBfs(start: Node, target: Node): Int {
-
-
-    // Queues for traversing levels
-    val queueStart = ArrayDeque<Node>().apply { add(start) }
-    val queueTarget = ArrayDeque<Node>().apply { add(target) }
-
-    // Visited sets with distance tracking
-    val visitedStart = mutableMapOf(start to 0)
-    val visitedTarget = mutableMapOf(target to 0)
-
-    while (queueStart.isNotEmpty() && queueTarget.isNotEmpty()) {
-        // Expand from the start side
-        val distFromStart = expandLevel(queueStart, visitedStart, visitedTarget)
-        if (distFromStart != -1) return distFromStart
-
-        // Expand from the target side
-        val distFromTarget = expandLevel(queueTarget, visitedTarget, visitedStart)
-        if (distFromTarget != -1) return distFromTarget
-    }
-
-    return -1 // No path found
-}
-
-private fun expandLevel(
-    queue: ArrayDeque<Node>,
-    visitedThisSide: MutableMap<Node, Int>,
-    visitedThatSide: Map<Node, Int>
-): Int {
-    val size = queue.size
-    for (i in 0 until size) {
-        val current = queue.removeFirst()
-        val currentDist = visitedThisSide[current]!!
-
-        for (neighbor in current.neighbors) {
-            // If the other search already visited this neighbor, we met!
-            if (visitedThatSide.containsKey(neighbor)) {
-                return currentDist + visitedThatSide[neighbor]!! + 1
-            }
-
-            if (!visitedThisSide.containsKey(neighbor)) {
-                visitedThisSide[neighbor] = currentDist + 1
-                queue.add(neighbor)
-            }
-        }
-    }
-    return -1
-}
-
-
-
+    // TODO: Implement the bidirectional BFS here
+    //
+    // TODO: The search should receive the graph,
+    //       starting ID, and target ID
+    //
+    // TODO: Create one queue for the id1 side
+    //
+    // TODO: Create one queue for the id2 side
+    //
+    // TODO: Create visited information for each side
+    //
+    // TODO: Expand the searches level by level
+    //
+    // TODO: Detect when the two searches meet
+    //
+    // TODO: Return enough information to reconstruct
+    //       the path, not just the distance
 }
