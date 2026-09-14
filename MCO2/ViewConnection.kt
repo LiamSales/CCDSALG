@@ -6,15 +6,44 @@ class ViewConnection {
         id2: Int
     ) {
 
-        // TODO: Check whether id1 is a valid ID
-
-        // TODO: Check whether id2 is a valid ID
-
-        // TODO: If id1 == id2, decide how you want to display
-        //       the connection from a person to themselves
+        if (id1 < 0 || id1 >= graph.size) {
+            println("Invalid ID.")
+            return
+        }
+        
+        if (id2 < 0 || id2 >= graph.size) {
+            println("Invalid ID.")
+            return
+        }
+        
+        if (id1 == id2) {
+            println("Person $id1 is the same person.")
+            return
+        }
 
         // TODO: Create the data structures needed for
         //       bidirectional BFS
+
+        val forwardQueue: Queue<Int> = LinkedList()
+        val backwardQueue: Queue<Int> = LinkedList()
+
+        
+
+        //Two Parent Maps to track visited nodes and reconstruct the path
+        // Using Map instead of Set because key presence proves it was visited, 
+        // and the value stores the parent pointer.
+        val forwardParents = mutableMapOf<Int, Int>()
+        val backwardParents = mutableMapOf<Int, Int>()
+    
+        // Initialize structures
+        forwardQueue.add(id1)
+        forwardParents[id1] = -1 // -1 signifies the root/start node
+    
+        backwardQueue.add(id2)
+        backwardParents[id2] = -1 // -1 signifies the root/target node
+
+
+        
 
         // TODO: Start one search from id1
 
