@@ -33,12 +33,12 @@ class ViewConnection {
         backwardParents[id2] = -1 // -1 signifies the root/target node
 
 
-        for (child in id1){
+        for (child in graph[id1]){
             forwardQueue.add(child)
             forwardParents[child] = id1
         }
 
-        for (child in id2){
+        for (child in graph[id2]){
             forwardQueue.add(child)
             forwardParents[child] = id2
         }
