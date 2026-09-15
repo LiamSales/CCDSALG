@@ -21,21 +21,11 @@ class ViewConnection {
             return
         }
 
-        // TODO: Create the data structures needed for
-        //       bidirectional BFS
-
         val forwardQueue: Queue<Int> = LinkedList()
         val backwardQueue: Queue<Int> = LinkedList()
-
-        
-
-        //Two Parent Maps to track visited nodes and reconstruct the path
-        // Using Map instead of Set because key presence proves it was visited, 
-        // and the value stores the parent pointer.
         val forwardParents = mutableMapOf<Int, Int>()
         val backwardParents = mutableMapOf<Int, Int>()
     
-        // Initialize structures
         forwardQueue.add(id1)
         forwardParents[id1] = -1 // -1 signifies the root/start node
     
@@ -43,12 +33,18 @@ class ViewConnection {
         backwardParents[id2] = -1 // -1 signifies the root/target node
 
 
-        
+        for (child in id1){
+            forwardQueue.add(child)
+            forwardParents[child] = id1
+        }
 
-        // TODO: Start one search from id1
+        for (child in id2){
+            forwardQueue.add(child)
+            forwardParents[child] = id2
+        }
 
-        // TODO: Start the other search from id2
 
+    
         // TODO: Repeatedly expand the searches level by level
 
         // TODO: When a node reached by the id1 search
