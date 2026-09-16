@@ -39,7 +39,6 @@ class ViewConnection {
 
         // TODO 8: Create the forward thread
 
-
         val forwardThread = thread(start = false, name = "ForwardSearch") {
             while (meetingNode == null && !forwardQueue.isEmpty()) {
                 val current = forwardQueue.poll() ?: continue
@@ -51,7 +50,19 @@ class ViewConnection {
 
         // TODO 9: Create the backward thread
 
+        val backwardThread = thread(start = false, name = "BackwardSearch") {
+            while (meetingNode == null && !backwardQueue.isEmpty()) {
+                val current = backwardQueue.poll() ?: continue
+
+                if (forwardParents.containsKey(current)) {
+                    meetingNode = current
+                    break
+                }
+
         // TODO 10: Start both threads
+        
+        forwardThread.start()
+        backwardThread.start()
 
         // TODO 11: Wait for both threads to finish
 
