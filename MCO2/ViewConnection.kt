@@ -35,6 +35,16 @@ class ViewConnection {
         val backwardParents = ConcurrentHashMap<Int, Int>()
         backwardParents[id2] = -1
 
+        for (child in graph[id1]){
+            forwardQueue.add(child)
+            forwardParents[child] = id1
+        }
+
+        for (child in graph[id2]){
+            backwardQueue.add(child)
+            backwardParents[child] = id2
+        }
+
         var meetingNode: Int? = null
 
         // TODO 8: Create the forward thread
@@ -47,8 +57,15 @@ class ViewConnection {
                     meetingNode = current
                     break
                 }
+                
+                for (i in forwardQueue){
+                    // we need to add their children to the queue
+                    // do we move the current version to a temp then fill out the temp?
+                    // but itll change its own queue, we cant add this
+                }
 
-        // TODO 9: Create the backward thread
+                //what if its a cycle, do we do hare and rabbit?
+            }
 
         val backwardThread = thread(start = false, name = "BackwardSearch") {
             while (meetingNode == null && !backwardQueue.isEmpty()) {
@@ -58,8 +75,7 @@ class ViewConnection {
                     meetingNode = current
                     break
                 }
-
-        // TODO 10: Start both threads
+            }
         
         forwardThread.start()
         backwardThread.start()
