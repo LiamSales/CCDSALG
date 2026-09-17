@@ -25,6 +25,7 @@ class ViewConnection {
             return
         }
 
+
         val forwardQueue = ConcurrentLinkedQueue<Int>()
         forwardQueue.add(id1)
         val backwardQueue = ConcurrentLinkedQueue<Int>()
@@ -35,59 +36,84 @@ class ViewConnection {
         val backwardParents = ConcurrentHashMap<Int, Int>()
         backwardParents[id2] = -1
 
-        for (child in graph[id1]){
-            forwardQueue.add(child)
-            forwardParents[child] = id1
-        }
-
-        for (child in graph[id2]){
-            backwardQueue.add(child)
-            backwardParents[child] = id2
-        }
-
         var meetingNode: Int? = null
 
-        // TODO 8: Create the forward thread
-
         val forwardThread = thread(start = false, name = "ForwardSearch") {
-            while (meetingNode == null && !forwardQueue.isEmpty()) {
-                val current = forwardQueue.poll() ?: continue
 
+            while (meetingNode == null && !forwardQueue.isEmpty()) {
+
+                val current = forwardQueue.poll() ?: continue
+                
                 if (backwardParents.containsKey(current)) {
                     meetingNode = current
                     break
                 }
-                
-                for (i in forwardQueue){
-                    // we need to add their children to the queue
-                    // do we move the current version to a temp then fill out the temp?
-                    // but itll change its own queue, we cant add this
-                }
 
-                //what if its a cycle, do we do hare and rabbit?
+                // Explore all neighbors of current
+                for (child in graph[current]) {
+
+                    // Only visit child if it has not been visited
+                    if (!forwardParents.containsKey(child)) {
+
+                        forwardParents[child] = current
+                        forwardQueue.add(child)
+
+                        // Check if backward search has already visited child
+                        if (backwardParents.containsKey(child)) {
+                            meetingNode = child
+                            break
+                        }
+                    }
+                }
             }
+        }
+
 
         val backwardThread = thread(start = false, name = "BackwardSearch") {
+
             while (meetingNode == null && !backwardQueue.isEmpty()) {
+
                 val current = backwardQueue.poll() ?: continue
 
                 if (forwardParents.containsKey(current)) {
                     meetingNode = current
                     break
                 }
+
+                // Explore all neighbors of current
+                for (child in graph[current]) {
+
+                    // Only visit child if it has not been visited
+                    if (!backwardParents.containsKey(child)) {
+
+                        backwardParents[child] = current
+                        backwardQueue.add(child)
+
+                        // Check if forward search has already visited child
+                        if (forwardParents.containsKey(child)) {
+                            meetingNode = child
+                            break
+                        }
+                    }
+                }
             }
-        
+        }
+
         forwardThread.start()
         backwardThread.start()
 
-        // TODO 11: Wait for both threads to finish
+        forwardThread.join()
+        backwardThread.join()
+        
+        if (meetingNode == null) {
+            println("No connection exists between $id1 and $id2.")
+            return
+        }
 
-        // TODO 12: If meetingNode is null, print that no connection exists
 
-        // TODO 13: If a meetingNode exists, reconstruct the
-        //        path from id1 to the meeting node
+        // TODO 13: Reconstruct path from id1 to meetingNode
 
-        // TODO 14: Reconstruct the path from the meeting node to id2
+        // TODO 14: Reconstruct path from meetingNode to id2
 
         // TODO 15: Combine the two paths and display the connection
     }
