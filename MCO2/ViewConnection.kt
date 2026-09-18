@@ -59,7 +59,7 @@ class ViewConnection {
 //cycle detection 
                         forwardParents[child] = current
 
-//just for mapping,
+//just for mapping, but what if its the root, then wont it error because of negative 1
                         forwardQueue.add(child)
 
 // add all children (full layer) to Q
