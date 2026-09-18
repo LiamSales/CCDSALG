@@ -43,20 +43,26 @@ class ViewConnection {
             while (meetingNode == null && !forwardQueue.isEmpty()) {
 
                 val current = forwardQueue.poll() ?: continue
+// remove from Q and move to the current var
                 
                 if (backwardParents.containsKey(current)) {
                     meetingNode = current
                     break
                 }
 
-                // Explore all neighbors of current
+           
                 for (child in graph[current]) {
 
-                    // Only visit child if it has not been visited
+        
                     if (!forwardParents.containsKey(child)) {
 
+//cycle detection 
                         forwardParents[child] = current
+
+//just for mapping,
                         forwardQueue.add(child)
+
+// add all children (full layer) to Q
 
                         // Check if backward search has already visited child
                         if (backwardParents.containsKey(child)) {
