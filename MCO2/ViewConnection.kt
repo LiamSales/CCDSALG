@@ -2,7 +2,12 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.concurrent.thread
 
+//space and time complexity 
+
 class ViewConnection {
+
+var time: Int = 0
+var space: Int = 0
 
     fun findConnection(
         graph: Array<MutableList<Int>>,
