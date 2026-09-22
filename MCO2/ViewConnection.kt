@@ -132,7 +132,6 @@ class ViewConnection {
 
         forwardThread.start()
         backwardThread.start()
-
         forwardThread.join()
         backwardThread.join()
 
