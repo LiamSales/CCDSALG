@@ -2,7 +2,10 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.concurrent.thread
 
-//space and time complexity 
+//space and time complexity for loop only (non constant)
+//adjust complexity for thread
+//space is worst case (largest used)
+
 
 class ViewConnection {
 
@@ -32,13 +35,14 @@ var space: Int = 0
             return
         }
 
-        val forwardQueue = ConcurrentLinkedQueue<Int>()
+        val forwardQueue = ConcurrentLinkedQueue<Int>() 
         forwardQueue.add(id1)
 
         val backwardQueue = ConcurrentLinkedQueue<Int>()
         backwardQueue.add(id2)
 
         val forwardParents = ConcurrentHashMap<Int, Int>()
+
         forwardParents[id1] = -1
 
         val backwardParents = ConcurrentHashMap<Int, Int>()
@@ -55,9 +59,10 @@ var space: Int = 0
 
               
                 val current = forwardQueue.poll() ?: continue
+time++
 
 
-           
+           time++
                 if (backwardParents.containsKey(current)) {
                     meetingNode = current
                     break
@@ -67,17 +72,18 @@ var space: Int = 0
              
                 for (child in graph[current]) {
 
-                   
+                   time++
                     if (!forwardParents.containsKey(child)) {
 
                        
                         forwardParents[child] = current
-
+time++
                         
                         forwardQueue.add(child)
+time++
+space++
 
-
-                    
+                    time++
                         if (backwardParents.containsKey(child)) {
                             meetingNode = child
                             break
@@ -98,9 +104,9 @@ var space: Int = 0
 
                 
                 val current = backwardQueue.poll() ?: continue
+time++
 
-
-              
+              time++
                 if (forwardParents.containsKey(current)) {
                     meetingNode = current
                     break
@@ -110,17 +116,18 @@ var space: Int = 0
             
                 for (child in graph[current]) {
 
-                    
+                    time++
                     if (!backwardParents.containsKey(child)) {
 
                        
                         backwardParents[child] = current
-
+time++
                        
                         backwardQueue.add(child)
+time++
+space++
 
-
-                       
+                       time++
                         if (forwardParents.containsKey(child)) {
                             meetingNode = child
                             break
@@ -156,14 +163,15 @@ var space: Int = 0
 
         while (i != id1) {
 
-           
+           time++
+space++
             forwardPath.add(i!!)
-
+time++
             parent map
             i = forwardParents[i]
         }
 
-      
+  
         forwardPath.add(id1)
 
        
@@ -177,10 +185,11 @@ var space: Int = 0
 
         while (i != id2) {
 
-          
+          time++
+space++
             backwardPath.add(i!!)
 
-           
+           time++
             i = backwardParents[i]
         }
 
