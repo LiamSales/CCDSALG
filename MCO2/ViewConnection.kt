@@ -1,16 +1,13 @@
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentLinkedQueue
+import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicReference
 import kotlin.concurrent.thread
-
-//space and time complexity for loop only (non constant)
-//adjust complexity for thread
-//space is worst case (largest used)
-
 
 class ViewConnection {
 
-var time: Int = 0
-var space: Int = 0
+    var time: Int = 0
+    var space: Int = 0
 
     fun findConnection(
         graph: Array<MutableList<Int>>,
@@ -18,7 +15,9 @@ var space: Int = 0
         id2: Int
     ) {
 
- 
+        time = 0
+        space = 0
+
         if (id1 < 0 || id1 >= graph.size) {
             println("Invalid ID.")
             return
@@ -29,63 +28,61 @@ var space: Int = 0
             return
         }
 
-
         if (id1 == id2) {
             println("Person $id1 is the same person.")
             return
         }
 
-        val forwardQueue = ConcurrentLinkedQueue<Int>() 
+        val forwardQueue = ConcurrentLinkedQueue<Int>()
         forwardQueue.add(id1)
 
         val backwardQueue = ConcurrentLinkedQueue<Int>()
         backwardQueue.add(id2)
 
         val forwardParents = ConcurrentHashMap<Int, Int>()
-
         forwardParents[id1] = -1
 
         val backwardParents = ConcurrentHashMap<Int, Int>()
         backwardParents[id2] = -1
 
-        var meetingNode: Int? = null
+        val meetingNode = AtomicReference<Int?>(null)
+
+        val timeCounter = AtomicInteger(0)
+        val spaceCounter = AtomicInteger(0)
 
         val forwardThread = thread(
             start = false,
             name = "ForwardSearch"
         ) {
 
-            while (meetingNode == null && !forwardQueue.isEmpty()) {
+            while (
+                meetingNode.get() == null &&
+                !forwardQueue.isEmpty()
+            ) {
 
-              
                 val current = forwardQueue.poll() ?: continue
-time++
 
+                timeCounter.incrementAndGet()
 
-           time++
                 if (backwardParents.containsKey(current)) {
-                    meetingNode = current
+                    meetingNode.compareAndSet(null, current)
                     break
                 }
 
-
-             
                 for (child in graph[current]) {
 
-                   time++
+                    timeCounter.incrementAndGet()
+
                     if (!forwardParents.containsKey(child)) {
 
-                       
                         forwardParents[child] = current
-time++
-                        
-                        forwardQueue.add(child)
-time++
-space++
 
-                    time++
+                        forwardQueue.add(child)
+
+                        spaceCounter.incrementAndGet()
+
                         if (backwardParents.containsKey(child)) {
-                            meetingNode = child
+                            meetingNode.compareAndSet(null, child)
                             break
                         }
                     }
@@ -93,43 +90,39 @@ space++
             }
         }
 
-
-        
         val backwardThread = thread(
             start = false,
             name = "BackwardSearch"
         ) {
 
-            while (meetingNode == null && !backwardQueue.isEmpty()) {
+            while (
+                meetingNode.get() == null &&
+                !backwardQueue.isEmpty()
+            ) {
 
-                
                 val current = backwardQueue.poll() ?: continue
-time++
 
-              time++
+                timeCounter.incrementAndGet()
+
                 if (forwardParents.containsKey(current)) {
-                    meetingNode = current
+                    meetingNode.compareAndSet(null, current)
                     break
                 }
 
-
-            
                 for (child in graph[current]) {
 
-                    time++
+                    timeCounter.incrementAndGet()
+
                     if (!backwardParents.containsKey(child)) {
 
-                       
                         backwardParents[child] = current
-time++
-                       
-                        backwardQueue.add(child)
-time++
-space++
 
-                       time++
+                        backwardQueue.add(child)
+
+                        spaceCounter.incrementAndGet()
+
                         if (forwardParents.containsKey(child)) {
-                            meetingNode = child
+                            meetingNode.compareAndSet(null, child)
                             break
                         }
                     }
@@ -137,84 +130,77 @@ space++
             }
         }
 
-
-  
         forwardThread.start()
         backwardThread.start()
 
-
-       
         forwardThread.join()
         backwardThread.join()
 
+        time = timeCounter.get()
+        space = spaceCounter.get()
 
-      
-        if (meetingNode == null) {
+        val meeting = meetingNode.get()
+
+        if (meeting == null) {
             println("No connection exists between $id1 and $id2.")
             return
         }
 
-
-    
-
         val forwardPath = mutableListOf<Int>()
 
-        var i = meetingNode
+        var i = meeting
 
         while (i != id1) {
 
-           time++
-space++
-            forwardPath.add(i!!)
-time++
-            parent map
-            i = forwardParents[i]
+            time++
+
+            space++
+
+            forwardPath.add(i)
+
+            i = forwardParents[i]!!
         }
 
-  
         forwardPath.add(id1)
 
-       
         forwardPath.reverse()
 
-
-        
         val backwardPath = mutableListOf<Int>()
 
-        i = meetingNode
+        i = meeting
 
         while (i != id2) {
 
-          time++
-space++
-            backwardPath.add(i!!)
+            time++
 
-           time++
-            i = backwardParents[i]
+            space++
+
+            backwardPath.add(i)
+
+            i = backwardParents[i]!!
         }
 
-      
         backwardPath.add(id2)
 
-
-      
-
-  
         backwardPath.removeAt(0)
-
 
         val completePath = forwardPath + backwardPath
 
+        time += forwardPath.size + backwardPath.size
+        space += forwardPath.size + backwardPath.size
 
-        
         println("Connection found!")
 
         print("Path: ")
 
         for (node in completePath) {
+            time++
             print("$node ")
         }
 
         println()
+
+        println("Time counter: $time")
+        println("Space counter: $space")
     }
 }
