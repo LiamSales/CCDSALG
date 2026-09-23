@@ -1,7 +1,7 @@
 fun main() {
     
     print("Enter file path: ")
-    val path = readLine()!!
+    val path = readln()
     val fileReader = FileReader()
     val graph = fileReader.readFile(path)
 
@@ -13,11 +13,11 @@ fun main() {
         println("3. Exit")
         print("Choose an option: ")
 
-        when (readLine()) {
+        when (readln()) {
 
             "1" -> {
     print("Enter ID of person: ")
-    val id = readLine()!!.toInt()
+    val id = readln().toInt()
 
     val viewUser = ViewUser()
     viewUser.displayFriendList(graph, id)
@@ -25,10 +25,10 @@ fun main() {
 
   "2" -> {
     print("Enter ID number: ")
-    val id1 = readLine()!!.toInt()
+    val id1 = readln().toInt()
 
     print("Enter ID number: ")
-    val id2 = readLine()!!.toInt()
+    val id2 = readln().toInt()
 
     val viewConnection = ViewConnection()
     viewConnection.findConnection(graph, id1, id2)

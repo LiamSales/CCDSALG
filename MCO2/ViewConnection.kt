@@ -1,7 +1,6 @@
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.atomic.AtomicInteger
-import java.util.concurrent.atomic.AtomicReference
 import kotlin.concurrent.thread
 
 class ViewConnection {
@@ -45,7 +44,7 @@ class ViewConnection {
         val backwardParents = ConcurrentHashMap<Int, Int>()
         backwardParents[id2] = -1
 
-        val meetingNode = AtomicReference<Int?>(null)
+        val meetingNode = AtomicInteger(-1)
 
         val timeCounter = AtomicInteger(0)
         val spaceCounter = AtomicInteger(0)
@@ -56,7 +55,7 @@ class ViewConnection {
         ) {
 
             while (
-                meetingNode.get() == null &&
+                meetingNode.get() == -1 &&
                 !forwardQueue.isEmpty()
             ) {
 
@@ -65,7 +64,7 @@ class ViewConnection {
                 timeCounter.incrementAndGet()
 
                 if (backwardParents.containsKey(current)) {
-                    meetingNode.compareAndSet(null, current)
+                    meetingNode.compareAndSet(-1, current)
                     break
                 }
 
@@ -82,7 +81,7 @@ class ViewConnection {
                         spaceCounter.incrementAndGet()
 
                         if (backwardParents.containsKey(child)) {
-                            meetingNode.compareAndSet(null, child)
+                            meetingNode.compareAndSet(-1, child)
                             break
                         }
                     }
@@ -96,7 +95,7 @@ class ViewConnection {
         ) {
 
             while (
-                meetingNode.get() == null &&
+                meetingNode.get() == -1 &&
                 !backwardQueue.isEmpty()
             ) {
 
@@ -105,7 +104,7 @@ class ViewConnection {
                 timeCounter.incrementAndGet()
 
                 if (forwardParents.containsKey(current)) {
-                    meetingNode.compareAndSet(null, current)
+                    meetingNode.compareAndSet(-1, current)
                     break
                 }
 
@@ -122,7 +121,7 @@ class ViewConnection {
                         spaceCounter.incrementAndGet()
 
                         if (forwardParents.containsKey(child)) {
-                            meetingNode.compareAndSet(null, child)
+                            meetingNode.compareAndSet(-1, child)
                             break
                         }
                     }
@@ -138,7 +137,9 @@ class ViewConnection {
         time = timeCounter.get()
         space = spaceCounter.get()
 
-        val meeting = meetingNode.get() ?: run {
+        val meeting = meetingNode.get()
+
+        if (meeting == -1) {
             println("No connection exists between $id1 and $id2.")
             return
         }
