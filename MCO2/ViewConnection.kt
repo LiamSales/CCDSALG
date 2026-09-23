@@ -138,9 +138,7 @@ class ViewConnection {
         time = timeCounter.get()
         space = spaceCounter.get()
 
-        val meeting = meetingNode.get()
-
-        if (meeting == null) {
+        val meeting = meetingNode.get() ?: run {
             println("No connection exists between $id1 and $id2.")
             return
         }
